@@ -1,12 +1,12 @@
-import { MenuItemConstructorOptions, shell } from 'electron';
+import { MenuItemConstructorOptions, shell, Menu } from 'electron';
 
 export default class MainMenu {
-    template: MenuItemConstructorOptions[] = [
+    private template: MenuItemConstructorOptions[] = [
         {
             role: 'help',
             submenu: [
                 {
-                    label: 'Learn More',
+                    label: 'Learn More than',
                     click: async () => {
                         await shell.openExternal('https://electronjs.org');
                     },
@@ -14,4 +14,9 @@ export default class MainMenu {
             ],
         },
     ];
+
+    constructor() {
+        const menu = Menu.buildFromTemplate(this.template);
+        Menu.setApplicationMenu(menu);
+    }
 }
