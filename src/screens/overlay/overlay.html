@@ -16,7 +16,16 @@
                 -moz-user-select: none;
                 -ms-user-select: none;
             }
+            #selectionRect {
+                position: absolute;
+                background-color: transparent;
+                border: 2px dashed #ff0000;
+                pointer-events: none;
+                opacity: 0;
+            }
         </style>
     </head>
-    <body></body>
+    <body>
+        <div id="selectionRect"></div>
+    </body>
 </html>
