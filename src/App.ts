@@ -4,6 +4,7 @@ import {
     screen,
     desktopCapturer,
     NativeImage,
+    globalShortcut,
 } from 'electron';
 
 declare const OVERLAY_WINDOW_WEBPACK_ENTRY: string;
@@ -11,6 +12,7 @@ declare const OVERLAY_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 export default class App {
     constructor(public mainWindow: BrowserWindow) {
+        this.shortCutRegister();
         this.takeScreenshot();
     }
 
@@ -72,5 +74,11 @@ export default class App {
                 const dataUrl: string = nativeImage.toDataURL();
                 this.mainWindow.webContents.send('SET_SOURCE', dataUrl);
             });
+    }
+
+    private shortCutRegister(): void {
+        globalShortcut.register('PrintScreen', () => {
+            this.enableCursorSelection();
+        });
     }
 }
